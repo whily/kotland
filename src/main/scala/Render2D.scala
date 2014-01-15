@@ -1,13 +1,14 @@
 /**
- * Class Render2DActivity and Render2DView.
- *
- * @author  Yujian Zhang <yujian{dot}zhang[at]gmail(dot)com>
- *
- * License: 
- *   GNU General Public License v2
- *   http://www.gnu.org/licenses/gpl-2.0.html
- * Copyright (C) 2014 Yujian Zhang
- */
+  * Class Render2DActivity and Render2DView, based on
+  *   Beginning Android Games, 2nd edition
+  *
+  * @author  Yujian Zhang <yujian{dot}zhang[at]gmail(dot)com>
+  *
+  * License: 
+  *   GNU General Public License v2
+  *   http://www.gnu.org/licenses/gpl-2.0.html
+  * Copyright (C) 2014 Yujian Zhang
+  */
 
 package net.whily.scaland
 
