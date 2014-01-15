@@ -40,9 +40,9 @@ class Render2DActivity extends Activity {
   * because it is not running inside UI thread.
   */
 abstract class Render2DView(context: Context) extends SurfaceView(context) with Runnable { 
-  var renderThread: Thread = null 
-  var holder: SurfaceHolder = getHolder()
-  @volatile var running: Boolean = false
+  private var renderThread: Thread = null 
+  @volatile private var running: Boolean = false
+  private val holder: SurfaceHolder = getHolder()
 
   /** 2D Drawing operations to be put inside this method. 
     * 
