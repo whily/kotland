@@ -30,6 +30,13 @@ object Util {
                             View.SYSTEM_UI_FLAG_IMMERSIVE)    
   }
 
+  /** Return id (like R.drawable.name). 
+   *  
+   *  @param activity: it is needed to access global variable Resources.
+   */    
+  def getDrawbleId(activity: Activity, name: String) =
+    getId(activity, name, "drawble")  
+
   /** 
    *  Return id (like R.raw.name). 
    *  
