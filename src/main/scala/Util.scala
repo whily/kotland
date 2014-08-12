@@ -34,7 +34,7 @@ object Util {
    *  
    *  @param activity: it is needed to access global variable Resources.
    */    
-  def getDrawbleId(activity: Activity, name: String) =
+  def getDrawableId(activity: Activity, name: String) =
     getId(activity, name, "drawble")  
 
   /** 
