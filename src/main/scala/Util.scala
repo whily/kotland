@@ -32,50 +32,50 @@ object Util {
 
   /** Return id (like R.drawable.name). 
    *  
-   *  @param activity: it is needed to access global variable Resources.
+   *  @param context: it is needed to access global variable Resources.
    */    
-  def getDrawableId(activity: Activity, name: String) =
-    getId(activity, name, "drawble")  
+  def getDrawableId(context: Context, name: String) =
+    getId(context, name, "drawble")  
 
   /** 
    *  Return id (like R.raw.name). 
    *  
-   *  @param activity: it is needed to access global variable Resources.
+   *  @param context: it is needed to access global variable Resources.
    */
-  def getRawId(activity: Activity, name: String) =
-    getId(activity, name, "raw")
+  def getRawId(context: Context, name: String) =
+    getId(context, name, "raw")
     
   /** 
    *  Return id (like R.xml.name). 
    *  
-   *  @param activity: it is needed to access global variable Resources.
+   *  @param context: it is needed to access global variable Resources.
    */
-  def getXmlId(activity: Activity, name: String) =
-    getId(activity, name, "xml")    
+  def getXmlId(context: Context, name: String) =
+    getId(context, name, "xml")    
 
   /** 
    *  Return string value corresponding to R.string.name. 
    *  
-   *  @param activity: it is needed to access global variable Resources.
+   *  @param context: it is needed to access global variable Resources.
    */    
-  def getString(activity: Activity, name: String) =
-    activity.getResources.getString(getStringId(activity, name))
+  def getString(context: Context, name: String) =
+    context.getResources.getString(getStringId(context, name))
 
   /** Return id (like R.string.name). 
    *  
-   *  @param activity: it is needed to access global variable Resources.
+   *  @param context: it is needed to access global variable Resources.
    */    
-  def getStringId(activity: Activity, name: String) =
-    getId(activity, name, "string")    
+  def getStringId(context: Context, name: String) =
+    getId(context, name, "string")    
 
   /** Core function used by getRawId() or getStringId(). 
    *  
    *  @param defType indicates e.g. "raw" or "string". For details, see
    *  android.content.res.Resources.getIdentifier().
    */   
-  def getId(activity: Activity, name: String, defType: String) = {
-    activity.getResources.getIdentifier(name, defType, 
-      activity.getApplicationContext.getPackageName)
+  def getId(context: Context, name: String, defType: String) = {
+    context.getResources.getIdentifier(name, defType, 
+      context.getApplicationContext.getPackageName)
   }
 
   def toast (context: Context, text: String) {
