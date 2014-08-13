@@ -35,7 +35,7 @@ object Util {
    *  @param context: it is needed to access global variable Resources.
    */    
   def getDrawableId(context: Context, name: String) =
-    getId(context, name, "drawble")  
+    getId(context, name, "drawable")  
 
   /** 
    *  Return id (like R.raw.name). 
