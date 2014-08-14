@@ -11,6 +11,7 @@
 
 package net.whily.scaland
 
+import java.io.{PrintWriter, StringWriter}
 import android.app.Activity
 import android.content.{Context, SharedPreferences}
 import android.preference.PreferenceManager
@@ -126,5 +127,13 @@ object Util {
       case "1" => 15
       case "2" => 18
     }    
+  }
+
+  /** Return the stack trace of the exception. */
+  def exceptionStack(e: Exception): String = {
+    val sw = new StringWriter()
+    val pw = new PrintWriter(sw)
+    e.printStackTrace(pw)
+    sw.toString
   }
 }
