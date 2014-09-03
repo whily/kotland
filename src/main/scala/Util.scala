@@ -16,6 +16,7 @@ import android.app.Activity
 import android.content.{Context, SharedPreferences}
 import android.preference.PreferenceManager
 import android.app.Activity
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.Toast
 
@@ -127,6 +128,18 @@ object Util {
       case "1" => 15
       case "2" => 18
     }    
+  }
+
+  /** Return the scaling factor to convert dp to px. */
+  def getDensity(activity: Activity) = {
+    var metrics = new DisplayMetrics()
+    activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics)
+    metrics.density
+  }
+
+  /** Convert from dp to px. */
+  def dp2px(dp: Float, density: Float) = {
+    Math.floor(dp * density + 0.5)
   }
 
   /** Return the stack trace of the exception. */
