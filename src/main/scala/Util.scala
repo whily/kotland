@@ -6,7 +6,7 @@
  * License: 
  *   GNU General Public License v2
  *   http://www.gnu.org/licenses/gpl-2.0.html
- * Copyright (C) 2014 Yujian Zhang
+ * Copyright (C) 2014-2015 Yujian Zhang
  */
 
 package net.whily.scaland
@@ -87,29 +87,29 @@ object Util {
   /** 
    *  Return string value of the corresponding key; return default if not found. 
    *  
-   *  @param activity is used to get the shared preference object.
+   *  @param context is used to get the shared preference object.
    */
-  def getSharedPref(activity: Activity, key: String, default: String) = 
-    PreferenceManager.getDefaultSharedPreferences(activity).getString(key, default)
+  def getSharedPref(context: Context, key: String, default: String) = 
+    PreferenceManager.getDefaultSharedPreferences(context).getString(key, default)
     
   /** 
    *  Set (key, value) to the shared preference object. 
    *  
-   *  @param activity is used to get the shared preference object.
+   *  @param context is used to get the shared preference object.
    *  @param value String value
    */
-  def setSharedPref(activity: Activity, key: String, value: String) {
-    val editor = PreferenceManager.getDefaultSharedPreferences(activity).edit()
+  def setSharedPref(context: Context, key: String, value: String) {
+    val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
     editor.putString(key, value)
     editor.commit()
   }
     
   /** Return the theme preference in {0, 1}. */
-  def getThemePref(activty: Activity) = getSharedPref(activty, "theme_preference", "0").toInt
+  def getThemePref(context: Context) = getSharedPref(context, "theme_preference", "0").toInt
   
   /** Return the language preference. */
-  def getLanguagePref(activity: Activity) = 
-    getSharedPref(activity, "language_preference", "local")
+  def getLanguagePref(context: Context) = 
+    getSharedPref(context, "language_preference", "local")
    
   /**
    * Return plural string.
@@ -130,16 +130,10 @@ object Util {
     }    
   }
 
-  /** Return the scaling factor to convert dp to px. */
-  def getDensity(activity: Activity) = {
-    var metrics = new DisplayMetrics()
-    activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics)
-    metrics.density
-  }
-
-  /** Convert from dp to px. */
-  def dp2px(dp: Float, density: Float) = {
-    Math.floor(dp * density + 0.5)
+  /** Convert from sp to px. */
+  def sp2px(sp: Float, context: Context) = {
+    val scaledDensity = context.getResources().getDisplayMetrics().scaledDensity
+    sp * scaledDensity;    
   }
 
   /** Return the stack trace of the exception. */
