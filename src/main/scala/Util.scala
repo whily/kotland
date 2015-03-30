@@ -110,6 +110,10 @@ object Util {
   /** Return the language preference. */
   def getLanguagePref(context: Context) = 
     getSharedPref(context, "language_preference", "local")
+
+  /** Return the simplified/traditional Chinese preference. */
+  def getChinesePref(context: Context) =
+    getSharedPref(context, "chinese_preference", "simplified")
    
   /**
    * Return plural string.
