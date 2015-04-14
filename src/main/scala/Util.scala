@@ -18,6 +18,7 @@ import android.preference.PreferenceManager
 import android.app.Activity
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 
 object Util {
@@ -146,5 +147,12 @@ object Util {
     val pw = new PrintWriter(sw)
     e.printStackTrace(pw)
     sw.toString
+  }
+
+  /** Hide soft input window from `view` of current `context`. */
+  def hideSoftInput(context: Context, view: View) {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE).asInstanceOf[InputMethodManager]
+    if (imm.isActive(view))
+      imm.hideSoftInputFromWindow(view.getWindowToken, 0)
   }
 }
