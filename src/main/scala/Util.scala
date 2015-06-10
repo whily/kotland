@@ -19,7 +19,7 @@ import android.app.Activity
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import android.widget.{EditText, Toast}
 
 object Util {
   /** Request immersive mode. */
@@ -155,4 +155,9 @@ object Util {
     if (imm.isActive(view))
       imm.hideSoftInputFromWindow(view.getWindowToken, 0)
   }
+
+  /** Move the cursor to the end of the `widget`. */
+  def moveCursorToEnd(widget: EditText) {
+    widget.setSelection(widget.getText().toString().length)
+  }  
 }
