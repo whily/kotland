@@ -27,7 +27,7 @@ The following tools are needed to build Scaland from source:
 * sbt (0.12.4)
 
 To build the library, android.jar in Android SDK (the path could be
-for example `/opt/android-sdk/platforms/android-19/android.jar`)
+for example `$ANDROID_HOME/platforms/android-22/android.jar`)
 should be copied the directory `lib/` under the source code tree.
 
 The project follows general sbt architecture, therefore normal sbt
