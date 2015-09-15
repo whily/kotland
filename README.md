@@ -6,8 +6,6 @@ Scaland is a self-contained Scala library for Android app development.
 Features to include:
 
 * Utility functions
-* 2D engine
-* 3D engine
 
 For more information about Scaland, please go to
   <https://github.com/whily/scaland>
@@ -20,9 +18,9 @@ Development
 
 The following tools are needed to build Scaland from source:
 
-* JDK version 6/7 from <http://www.java.com> if Java is not available. 
+* JDK version 6/7 from <http://www.java.com> if Java is not available.
   Note that JDK is preinstalled on Mac OS X and available via package manager
-  on many Linux systems. 
+  on many Linux systems.
 * Scala (2.11.0)
 * sbt (0.12.4)
 
