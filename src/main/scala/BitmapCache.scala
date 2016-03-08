@@ -39,43 +39,13 @@ class BitmapCache(context: Context) {
 
   private def getBitmapFromMemCache(key: String) = cache.get(key)
 
-  def loadBitmap(resId: Int, bitmaps: Array[Bitmap], index: Int, canvas: Canvas,
-                 tileRect: RectF, paint: Paint) {
+  def loadBitmap(resId: Int) = {
     val imageKey = resId.toString
     val bitmap = getBitmapFromMemCache(imageKey)
-    if (bitmap != null) {
-      bitmaps(index) = bitmap
-    } else {
-      val task = new BitmapWorkerTask(bitmaps, index, canvas, tileRect, paint)
-      task.execute(resId.asInstanceOf[AnyRef])
-    }
-  }
-
-  // It seems that there is some issues when using AsyncTask with Scala.
-  // For example AnyRef should be used instead of actual data type.
-  class BitmapWorkerTask(private val bitmaps: Array[Bitmap], private val index: Int, private val canvas: Canvas,
-                 private val tileRect: RectF, private val paint: Paint)
-      extends AsyncTask[AnyRef, Void, Bitmap] {
-    private val canvasReference = new WeakReference[Canvas](canvas)
-    private val paintReference = new WeakReference[Paint](paint)
-
-    // Decode image in background.
-    override protected def doInBackground(params: AnyRef*): AnyRef = {
-      val resId = params(0).asInstanceOf[Int]
+    if (bitmap == null) {
       val decodedBitmap = BitmapFactory.decodeResource(context.getResources(), resId)
       addBitmapToMemoryCache(resId.toString, decodedBitmap)
       decodedBitmap
-    }
-
-    override protected def onPostExecute(bitmap: Bitmap) {
-      if ((canvasReference != null) && (paintReference != null) && (bitmapRef != null)) {
-        val canvasNow = canvasReference.get()
-        val paintNow = paintReference.get()
-        if ((canvasNow != null) && (paintNow != null)) {
-          bitmaps(index) = bitmap
-          canvas.drawBitmap(bitmaps(index), null, tileRect, paint)
-        }
-      }
-    }
+    } else bitmap
   }
 }
