@@ -19,10 +19,14 @@ import android.util.LruCache
 
 /** Memory cache for bitmap. */
 class BitmapCache(context: Context) {
+  // Bitmap option to reduce memory usage by half.
+  private val bitmapLoadingOptions = new BitmapFactory.Options()
+  bitmapLoadingOptions.inPreferredConfig = Bitmap.Config.RGB_565
+
   // VM memory in kB.
   private val maxMemory = (Runtime.getRuntime().maxMemory() / 1024).asInstanceOf[Int]
-  // Use 1/8 for bitmap cache.
-  private val cacheSize = maxMemory / 8
+  // Use 1/4 for bitmap cache.
+  private val cacheSize = maxMemory / 4
   private val cache = new LruCache[String, Bitmap](cacheSize) {
     override protected def sizeOf(key: String, bitmap: Bitmap) = {
       // The cache size will be measured in kilobytes rather than
@@ -43,7 +47,7 @@ class BitmapCache(context: Context) {
     val imageKey = resId.toString
     val bitmap = getBitmapFromMemCache(imageKey)
     if (bitmap == null) {
-      val decodedBitmap = BitmapFactory.decodeResource(context.getResources(), resId)
+      val decodedBitmap = BitmapFactory.decodeResource(context.getResources(), resId, bitmapLoadingOptions)
       addBitmapToMemoryCache(resId.toString, decodedBitmap)
       decodedBitmap
     } else bitmap
