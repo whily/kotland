@@ -21,8 +21,8 @@ The following tools are needed to build Scaland from source:
 * JDK version 6/7/8 from <http://www.java.com> if Java is not available.
   Note that JDK is preinstalled on Mac OS X and available via package manager
   on many Linux systems.
-* Scala (2.12.4)
-* sbt (1.0.2)
+* Scala (2.11.11)
+* sbt (0.13.16)
 
 To build the library, android.jar in Android SDK (the path could be
 for example `$ANDROID_HOME/platforms/android-23/android.jar`)
